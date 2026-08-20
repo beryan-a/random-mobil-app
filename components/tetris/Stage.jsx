@@ -1,6 +1,6 @@
 // import React from 'react';
-import {StyledStage} from './styles/StyledStage'
-import Cell from './Cell';
+import {StyledStage} from '@/components/tetris/styles/StyledStage'
+import Cell from '@/components/tetris/Cell';
 
 function Stage({ stage }) {
   return (

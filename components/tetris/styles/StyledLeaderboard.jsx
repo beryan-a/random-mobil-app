@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 
-export const StyledLeaderboard = styled.div`
+export const StyledLeaderboard = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;

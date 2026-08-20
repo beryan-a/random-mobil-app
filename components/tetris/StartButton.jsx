@@ -1,4 +1,4 @@
-import { StyledStartButton } from "./styles/StyledStartButton";
+import { StyledStartButton } from "@/components/tetris/styles/StyledStartButton";
 
 function StartButton({ callback , text}) {
   return (

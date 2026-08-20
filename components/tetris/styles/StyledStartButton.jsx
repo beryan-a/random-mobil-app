@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
-export const StyledStartButton = styled.button`
+export const StyledStartButton = styled.Pressable`
     box-sizing: border-box;
     margin: 0 0 20px 0;
     padding: 20px;

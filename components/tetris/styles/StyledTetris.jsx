@@ -1,7 +1,7 @@
 //import React from 'react';
-import styled from "styled-components";
+import styled from "styled-components/native";
 
-export const StyledTetrisWrapper = styled.div`
+export const StyledTetrisWrapper = styled.View`
     width: 100vw;
     height: 100vh;
     background: papayawhip;
@@ -10,7 +10,7 @@ export const StyledTetrisWrapper = styled.div`
     
 
 `
-export const StyledTetris = styled.div`
+export const StyledTetris = styled.View`
     display: flex;
     align-items: flex-state;
     padding: 40px;

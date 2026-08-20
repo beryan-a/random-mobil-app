@@ -1,4 +1,3 @@
-import React from 'react'
 import { StyledSpeedSlider } from './styles/StyledSpeedSlider'
 
 function SpeedSlider({ speed , onSpeedChange }) {

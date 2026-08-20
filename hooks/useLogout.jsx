@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
-
+import { useRouter } from 'expo-router';
 export const useLogout = () => {
 
-    const navigate = useNavigate();
-
+    const router = useRouter();
+    
     const logout = (gameStarted, gameOver) => {
 
         if (gameStarted && !gameOver) {
@@ -17,7 +16,7 @@ export const useLogout = () => {
 
         localStorage.removeItem("player");
 
-        navigate("/");
+        router.push("/");
     };
 
     return {logout};

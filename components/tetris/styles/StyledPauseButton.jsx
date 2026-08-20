@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 
 
-export const StyledPauseButton = styled.button`
+export const StyledPauseButton = styled.Pressable`
   background: transparent;
   color: #cc6c8c;
 

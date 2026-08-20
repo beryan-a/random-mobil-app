@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 
-export const StyledNextPiece = styled.div`
+export const StyledNextPiece = styled.View`
   display: grid;
 
   grid-template-columns: repeat(4, 1fr);

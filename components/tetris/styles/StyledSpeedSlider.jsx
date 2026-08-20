@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 
-export const StyledSpeedSlider = styled.div`
+export const StyledSpeedSlider = styled.View`
   margin-bottom: 20px;
   color: black;
   font-family: monospace;

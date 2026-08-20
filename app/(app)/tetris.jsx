@@ -1,33 +1,59 @@
-//IMPORTLAR
-import { useState , useEffect } from 'react';
+// // IMPORTLAR
+// import { useState, useEffect } from 'react';
+// import { View, Text, TouchableOpacity } from 'react-native';
+// import { useRouter } from "expo-router";
 
-import { createStage, checkCollision } from '@/helpers/gameHelpers';
-import { StyledTetrisWrapper, StyledTetris } from '@/components/tetris/styles/StyledTetris';
+// import { createStage, checkCollision } from '@/helpers/gameHelpers';
+// import { StyledTetrisWrapper, StyledTetris } from '@/components/tetris/styles/StyledTetris';
 
-// Custom Hooks
-import { useInterval } from '@/hooks/useInterval';
-import { usePlayer } from '@/hooks/usePlayer';
-import { useStage } from '@/hooks/useStage';
-import { useGameStatus } from '@/hooks/useGameStatus';
-import { usePlayerStats } from "@/hooks/usePlayerStats";
-import { useSaveScore } from "@/hooks/useSaveScore";
-import { useLogout } from "@/hooks/useLogout";
-import { useGameControl } from "@/hooks/useGameControl";
-import { useGameMovement } from "@/hooks/useGameMovement";
-import { useAutoSaveScore } from "@/hooks/useAutoSaveScore";
+// // Custom Hooks
+// import { useInterval } from '@/hooks/useInterval';
+// import { usePlayer } from '@/hooks/usePlayer';
+// import { useStage } from '@/hooks/useStage';
+// import { useGameStatus } from '@/hooks/useGameStatus';
+// import { usePlayerStats } from "@/hooks/usePlayerStats";
+// import { useSaveScore } from "@/hooks/useSaveScore";
+// import { useLogout } from "@/hooks/useLogout";
+// import { useGameControl } from "@/hooks/useGameControl";
+// import { useGameMovement } from "@/hooks/useGameMovement";
+// import { useAutoSaveScore } from "@/hooks/useAutoSaveScore";
 
-// Components
-import Stage from '@/components/tetris/Stage';
-import Display from '@/components/tetris/Display';
-import StartButton from '@/components/tetris/StartButton';
-import SpeedSlider from '@/components/tetris/SpeedSlider';
-import NextPiece from "@/components/tetris/NextPiece";
-import PauseButton from '@/components/tetris/PauseButton';
+// // Components
+// import Stage from '@/components/tetris/Stage';
+// import Display from '@/components/tetris/Display';
+// import StartButton from '@/components/tetris/StartButton';
+// import SpeedSlider from '@/components/tetris/SpeedSlider';
+// import NextPiece from "@/components/tetris/NextPiece";
+// import PauseButton from '@/components/tetris/PauseButton';
+// import { StyledStartButton } from '@/components/tetris/styles/StyledStartButton';
+// import { StyledPauseButton } from '@/components/tetris/styles/StyledPauseButton';
 
-import { useNavigate } from "react-router-dom";
-import { StyledStartButton } from '@/components/tetris/styles/StyledStartButton';
-import { StyledPauseButton } from '@/components/tetris/styles/StyledPauseButton';
-import { View } from 'react-native';
+// Yanlış / Çözülemeyen:
+// import { createStage } from '@/helpers/gameHelpers';
+// import Stage from '@/components/tetris/Stage';
+
+// Doğru (Relative Path):
+import { createStage, checkCollision } from '../../helpers/gameHelpers';
+import { StyledTetrisWrapper, StyledTetris } from '../../components/tetris/styles/StyledTetris';
+import Stage from '../../components/tetris/Stage';
+import Display from '../../components/tetris/Display';
+import StartButton from '../../components/tetris/StartButton';
+import SpeedSlider from '../../components/tetris/SpeedSlider';
+import NextPiece from '../../components/tetris/NextPiece';
+import PauseButton from '../../components/tetris/PauseButton';
+import { StyledStartButton } from '../../components/tetris/styles/StyledStartButton';
+import { StyledPauseButton } from '../../components/tetris/styles/StyledPauseButton';
+
+import { useInterval } from '../../hooks/useInterval';
+import { usePlayer } from '../../hooks/usePlayer';
+import { useStage } from '../../hooks/useStage';
+import { useGameStatus } from '../../hooks/useGameStatus';
+import { usePlayerStats } from '../../hooks/usePlayerStats';
+import { useSaveScore } from '../../hooks/useSaveScore';
+import { useLogout } from '../../hooks/useLogout';
+import { useGameControl } from '../../hooks/useGameControl';
+import { useGameMovement } from '../../hooks/useGameMovement';
+import { useAutoSaveScore } from '../../hooks/useAutoSaveScore';
 
 /**
  * oyun iki şey sayesinde ilerliyor: keyborad eventleri(tuşlar) ve setInterval(timer) fonksiyonu. 
@@ -64,7 +90,7 @@ const Tetris = () => {
 
   const { move, drop, keyUp } = useGameMovement(player, stage, updatePlayerPos, playerRotate, setGameOver, setDropTime, gameOver, speed);
 
-  const navigate = useNavigate();
+  const navigate = useRouter();
   
 
   // This one starts the game
@@ -91,7 +117,7 @@ useAutoSaveScore(gameOver, saveScore); //oyun bitince dbde skor güncellenmesi
             <Display gameOver={gameOver} text="Game Over" />
             <Display text={`Score: ${score}`} />
             <StyledStartButton onClick={() => navigate("/leaderboard")}>
-                Leaderboard
+                <Text>Leaderboard</Text>
             </StyledStartButton>
             </>
           ) : (
@@ -111,9 +137,9 @@ useAutoSaveScore(gameOver, saveScore); //oyun bitince dbde skor güncellenmesi
           )}
           <StartButton callback={startGame} text={gameStarted ? "RESET GAME" : "START GAME"} />
 
-          <StyledPauseButton onClick={()=> logout(gameStarted, gameOver)}>
+          {/* <StyledPauseButton onClick={()=> logout(gameStarted, gameOver)}>
             Logout
-          </StyledPauseButton>
+          </StyledPauseButton> */}
 
         </View>
       </StyledTetris>

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
-export const StyledGameOver = styled.div`
+export const StyledGameOver = styled.View`
     display: flex;
     align-items: center;
     justify-content: center;

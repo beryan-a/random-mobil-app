@@ -1,7 +1,7 @@
 //import React from 'react'
-import styled from "styled-components";
+import styled from "styled-components/native";
 
-const StyledCell = styled.div`
+const StyledCell = styled.View`
     width: auto;
     /* border-radius: 5px; */
     background: rgba(${props => props.color}, 0.8);

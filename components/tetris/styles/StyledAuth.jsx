@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 
-export const StyledAuthPage = styled.div`
+export const StyledAuthPage = styled.View`
   width: 100vw;
   height: 100vh;
 
@@ -11,7 +11,7 @@ export const StyledAuthPage = styled.div`
   background: papayawhip;
 `;
 
-export const StyledAuthCard = styled.div`
+export const StyledAuthCard = styled.View`
   width: 350px;
 
   display: flex;
@@ -38,7 +38,7 @@ export const StyledAuthCard = styled.div`
   }
 `;
 
-export const StyledAuthInput = styled.input`
+export const StyledAuthInput = styled.TextInput`
   width: 100%;
   box-sizing: border-box;
 
@@ -57,7 +57,7 @@ export const StyledAuthInput = styled.input`
   }
 `;
 
-export const StyledAuthButton = styled.button`
+export const StyledAuthButton = styled.Pressable`
   padding: 12px;
 
   border: 2px solid black;
@@ -71,12 +71,12 @@ export const StyledAuthButton = styled.button`
   cursor: pointer;
 `;
 
-export const StyledPasswordWrapper = styled.div`
+export const StyledPasswordWrapper = styled.View`
   position: relative;
   width: 100%;
 `;
 
-export const StyledEyeButton = styled.button`
+export const StyledEyeButton = styled.Pressable`
   position: absolute;
 
   top: 50%;

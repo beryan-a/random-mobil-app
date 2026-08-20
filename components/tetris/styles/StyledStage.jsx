@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
-export const StyledStage = styled.div`
+export const StyledStage = styled.View`
     display: grid;
     grid-template-rows: repeat(
         ${props => props.height},

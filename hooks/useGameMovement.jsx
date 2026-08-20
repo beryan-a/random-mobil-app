@@ -1,4 +1,4 @@
-import { checkCollision } from "../gameHelpers";
+import { checkCollision } from "@/helpers/gameHelpers";
 
 export const useGameMovement = (
     player,

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 
-const StyledDisplay = styled.div`
+const StyledDisplay = styled.View`
     box-sizing: border-box;
     display: flex;
     align-items: center;

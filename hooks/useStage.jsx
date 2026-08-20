@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { createStage } from '../gameHelpers';
+import { createStage } from '@/helpers/gameHelpers';
 
 //oyun boardını(alanını) yönetiyor.
 export const useStage = (player, resetPlayer) => {

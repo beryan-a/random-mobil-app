@@ -1,9 +1,8 @@
-import Cell from "./Cell";
-import { StyledNextPiece } from "./styles/StyledNextPiece";
+import Cell from "@/components/tetris/Cell";
+import { StyledNextPiece } from "@/components/tetris/styles/StyledNextPiece";
 import React from 'react'
 
 function NextPiece({ tetromino }) {
-
   const previewGrid = Array(4)
     .fill(null)
     .map(() => Array(4).fill(0));
