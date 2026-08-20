@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Internationalization (i18n) Standards
+
+- Never hardcode user-facing strings
+- Always use i18n.t() for all text strings
+- Organize translation keys by screen or feature
+- Use dot notation for nested translation keys
+- Include all languages in translation files
+
+## Translations Usage
+
+```tsx
+import i18n from '@/services/i18n';
+
+// ❌ Don't do this
+<Text>Welcome to the app</Text>
+
+// ✅ Do this
+<Text>{i18n.t('common.welcome')}</Text>
+
+// ✅ With variables
+<Text>{i18n.t('user.greeting', { name: username })}</Text>
+```
+
+## Translation Keys Organization
+
+```json
+{
+  "common": {
+    "welcome": "Welcome to the app",
+    "continue": "Continue",
+    "cancel": "Cancel"
+  },
+  "auth": {
+    "login": {
+      "title": "Login to your account",
+      "emailPlaceholder": "Enter your email"
+    }
+  }
+}
+```

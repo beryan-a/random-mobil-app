@@ -1,0 +1,19 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Functional Programming Guidelines
+
+- All services and utilities must use a functional approach rather than class-based
+- Use named function exports for individual functions
+- Provide default combined exports for easier imports
+- Follow pure function principles whenever possible
+- Always handle errors with try/catch in services
+
+## Service Export Pattern
+
+```typescript
+// Individual exports
+export const someFunction = () => {...};
+export const anotherFunction = () => {...};

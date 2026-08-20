@@ -1,0 +1,102 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Service Templates
+
+Use these templates when creating new services in the application.
+
+## Authentication Service Template
+
+```typescript
+// services/auth/index.ts
+
+import { logError } from '@/services/error-handling';
+
+// User login with email and password
+export const loginWithEmail = async (email: string, password: string) => {
+  try {
+    // Implementation
+    return { success: true, user };
+  } catch (error) {
+    logError(error, 'loginWithEmail');
+    return { success: false, error };
+  }
+};
+
+// User signup with email and password
+export const signupWithEmail = async (email: string, password: string) => {
+  try {
+    // Implementation
+    return { success: true, user };
+  } catch (error) {
+    logError(error, 'signupWithEmail');
+    return { success: false, error };
+  }
+};
+
+// Logout current user
+export const logout = async () => {
+  try {
+    // Implementation
+    return { success: true };
+  } catch (error) {
+    logError(error, 'logout');
+    return { success: false, error };
+  }
+};
+
+// Default export with all functions
+export default {
+  loginWithEmail,
+  signupWithEmail,
+  logout,
+};
+```
+
+## Analytics Service Template
+
+```typescript
+// services/analytics/index.ts
+
+// Log event with optional parameters
+export const logEvent = (eventName: string, params?: Record<string, any>) => {
+  try {
+    // Implementation
+    return true;
+  } catch (error) {
+    console.error('Analytics error:', error);
+    return false;
+  }
+};
+
+// Log screen view
+export const logScreen = (screenName: string, params?: Record<string, any>) => {
+  try {
+    // Implementation
+    return true;
+  } catch (error) {
+    console.error('Analytics error:', error);
+    return false;
+  }
+};
+
+// Set user properties
+export const setUserProperties = (properties: Record<string, any>) => {
+  try {
+    // Implementation
+    return true;
+  } catch (error) {
+    console.error('Analytics error:', error);
+    return false;
+  }
+};
+
+// Default export with all functions
+export default {
+  logEvent,
+  logScreen,
+  setUserProperties,
+};
+```

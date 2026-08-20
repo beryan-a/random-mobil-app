@@ -1,0 +1,12 @@
+CFBundleDisplayName = "RNStarterKit";
+NSContactsUsageDescription = "친구와 연결하는 데 도움이 되도록 연락처 접근 권한이 필요합니다";
+common = "[object Object]";
+onboarding = "[object Object]";
+loginScreen = "[object Object]";
+registerScreen = "[object Object]";
+validation = "[object Object]";
+phoneLoginScreen = "[object Object]";
+homeScreen = "[object Object]";
+profileScreen = "[object Object]";
+firebaseErrors = "[object Object]";
+resetPasswordScreen = "[object Object]";

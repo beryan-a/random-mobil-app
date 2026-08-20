@@ -1,0 +1,12 @@
+CFBundleDisplayName = "RNStarterKit";
+NSContactsUsageDescription = "Wir benötigen Zugriff auf Kontakte, damit Sie sich mit Freunden verbinden können";
+common = "[object Object]";
+onboarding = "[object Object]";
+loginScreen = "[object Object]";
+registerScreen = "[object Object]";
+phoneLoginScreen = "[object Object]";
+homeScreen = "[object Object]";
+profileScreen = "[object Object]";
+validation = "[object Object]";
+firebaseErrors = "[object Object]";
+resetPasswordScreen = "[object Object]";

@@ -1,0 +1,18 @@
+# React Native Starter Kit Development Guidelines
+- Use functional programming approach instead of class-based
+- All services should export both named functions and a default combined export
+- Use TypeScript for all files with proper types and interfaces
+- Use NativeWind (Tailwind CSS) for styling components
+- Never hardcode strings, always use i18n.t() for translations
+- Wrap service functions in try-catch blocks with proper error handling
+- Keep UI components pure when possible
+- Use react-hook-form with yup for form handling
+- Follow the folder structure pattern:
+  - app/(app) - Main app screens
+  - app/(auth) - Authentication screens
+  - components - Reusable UI components
+  - context - React context providers
+  - services - Core business logic and services
+  - hooks - Custom React hooks
+  - translations - Language files
+  - types - TypeScript types 

@@ -1,0 +1,199 @@
+{
+  "expo": {
+    "name": "RNStarterKitExpo",
+    "slug": "RNStarterKitExpo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "codebasehub",
+    "userInterfaceStyle": "automatic",
+    "notification": {
+      "icon": "./assets/images/favicon.png"
+    },
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.salika.RNStarterKitExpo", // TODO: change with your bundle id
+      "associatedDomains": ["applinks:codebasehub.onelink.me"], // TODO: change with your onelink host from AppsFlyer
+      "googleServicesFile": "./GoogleService-Info.plist", // TODO: find from GoogleService-Info.plist
+      "usesAppleSignIn": true,
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true,
+        "ExpoLocalization_supportsRTL": true,
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": [
+              "com.salika.RNStarterKitExpo", // TODO: change with your bundle id
+              "app-1-387444732055-ios-0385d3a2645185d380b9d2" // TODO: find from GoogleService-Info.plist
+            ]
+          }
+        ]
+      },
+      "appleTeamId": "32C4JWR5TY" // TODO: change with your apple team id
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.salika.RNStarterKitExpo",
+      "googleServicesFile": "./google-services.json",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "https",
+              "host": "codebasehub.onelink.me", // TODO: change with your onelink host from AppsFlyer
+              "pathPrefix": "/test1"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        },
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "codebasehub"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png", // TODO: change with your splash icon
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./assets/images/splash-icon-dark.png", // TODO: change with your splash icon for dark mode
+            "backgroundColor": "#0F172A"
+          }
+        }
+      ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "@react-native-firebase/crashlytics",
+      [
+        "@react-native-firebase/messaging",
+        {
+          "presentationOptions": ["badge", "sound", "alert"]
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      "expo-localization",
+      "@react-native-google-signin/google-signin",
+      "expo-apple-authentication",
+      "expo-tracking-transparency",
+      ["react-native-appsflyer", {}],
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-6370298270367230~3154264064", // TODO: change with your Mobile Ads App ID
+          "iosAppId": "ca-app-pub-6370298270367230~7101789538", // TODO: change with your Mobile Ads App ID
+          "skAdNetworkItems": [
+            "cstr6suwn9.skadnetwork",
+            "4fzdc2evr5.skadnetwork",
+            "2fnua5tdw4.skadnetwork",
+            "ydx93a7ass.skadnetwork",
+            "p78axxw29g.skadnetwork",
+            "v72qych5uu.skadnetwork",
+            "ludvb6z3bs.skadnetwork",
+            "cp8zw746q7.skadnetwork",
+            "3sh42y64q3.skadnetwork",
+            "c6k4g5qg8m.skadnetwork",
+            "s39g8k73mm.skadnetwork",
+            "3qy4746246.skadnetwork",
+            "hs6bdukanm.skadnetwork",
+            "mlmmfzh3r3.skadnetwork",
+            "v4nxqhlyqp.skadnetwork",
+            "wzmmz9fp6w.skadnetwork",
+            "su67r6k2v3.skadnetwork",
+            "yclnxrl5pm.skadnetwork",
+            "7ug5zh24hu.skadnetwork",
+            "gta9lk7p23.skadnetwork",
+            "vutu7akeur.skadnetwork",
+            "y5ghdn5j9k.skadnetwork",
+            "v9wttpbfk9.skadnetwork",
+            "n38lu8286q.skadnetwork",
+            "47vhws6wlr.skadnetwork",
+            "kbd757ywx3.skadnetwork",
+            "9t245vhmpl.skadnetwork",
+            "a2p9lx4jpn.skadnetwork",
+            "22mmun2rn5.skadnetwork",
+            "4468km3ulz.skadnetwork",
+            "2u9pt9hc89.skadnetwork",
+            "8s468mfl3y.skadnetwork",
+            "ppxm28t8ap.skadnetwork",
+            "uw77j35x4d.skadnetwork",
+            "pwa73g5rt2.skadnetwork",
+            "578prtvx9j.skadnetwork",
+            "4dzt52r2t5.skadnetwork",
+            "tl55sbb4fm.skadnetwork",
+            "e5fvkxwrpn.skadnetwork",
+            "8c4e2ghe7u.skadnetwork",
+            "3rd42ekr43.skadnetwork",
+            "3qcr597p9d.skadnetwork"
+          ]
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/BricolageGrotesque/BricolageGrotesque-ExtraLight.ttf",
+            "./assets/fonts/BricolageGrotesque/BricolageGrotesque-Light.ttf",
+            "./assets/fonts/BricolageGrotesque/BricolageGrotesque-Regular.ttf",
+            "./assets/fonts/BricolageGrotesque/BricolageGrotesque-Medium.ttf",
+            "./assets/fonts/BricolageGrotesque/BricolageGrotesque-SemiBold.ttf",
+            "./assets/fonts/BricolageGrotesque/BricolageGrotesque-Bold.ttf",
+            "./assets/fonts/BricolageGrotesque/BricolageGrotesque-ExtraBold.ttf"
+          ]
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "1b515019-61bd-49d7-a7f7-3ed45db2c806" // TODO: change with your eas project id
+      },
+      "supportsRTL": true
+    },
+    "locales": {
+      "en": "./translations/en.json", // english
+      "ar": "./translations/ar.json", // arabic
+      "zh": "./translations/zh-Hans.json", // chinese
+      "fr": "./translations/fr.json", // french
+      "de": "./translations/de.json", // german
+      "hi": "./translations/hi.json", // hindi
+      "it": "./translations/it.json", //italian
+      "ja": "./translations/ja.json", // japanese
+      "ko": "./translations/ko.json", // korean
+      "ru": "./translations/ru.json", // russian
+      "es": "./translations/es.json", // spanish
+      "tr": "./translations/tr.json" // turkish
+    }
+  }
+}

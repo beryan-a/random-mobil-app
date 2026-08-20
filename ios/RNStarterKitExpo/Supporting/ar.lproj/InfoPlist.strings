@@ -1,0 +1,12 @@
+CFBundleDisplayName = "آر إن ستارتر كيت";
+NSContactsUsageDescription = "نحتاج إلى الوصول إلى جهات الاتصال لمساعدتك في التواصل مع الأصدقاء";
+common = "[object Object]";
+onboarding = "[object Object]";
+loginScreen = "[object Object]";
+registerScreen = "[object Object]";
+phoneLoginScreen = "[object Object]";
+homeScreen = "[object Object]";
+profileScreen = "[object Object]";
+validation = "[object Object]";
+firebaseErrors = "[object Object]";
+resetPasswordScreen = "[object Object]";

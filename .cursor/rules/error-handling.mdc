@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Error Handling Standards
+
+- Always use try-catch blocks in service functions
+- Use the error-handling service for consistent error messaging
+- Log errors with proper context for easier debugging
+- Return meaningful error messages to the UI layer
+- Handle Firebase-specific errors with the handleFirebaseError utility
+
+## Error Handling Pattern
+
+```typescript
+import { logError, handleFirebaseError } from '@/services/error-handling';
+
+export const someServiceFunction = async (params) => {
+  try {
+    // Function implementation
+    return { success: true, data };
+  } catch (error) {
+    const errorMessage = handleFirebaseError(error.code) || 'Default error message';
+    logError(error, 'someServiceFunction', { params });
+    return { success: false, error: errorMessage };
+  }
+};
+```

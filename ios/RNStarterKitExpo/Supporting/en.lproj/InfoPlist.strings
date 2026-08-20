@@ -1,0 +1,14 @@
+CFBundleDisplayName = "RNStarterKit";
+NSContactsUsageDescription = "We need access to contacts to help you connect with friends";
+NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
+common = "[object Object]";
+onboarding = "[object Object]";
+loginScreen = "[object Object]";
+registerScreen = "[object Object]";
+phoneLoginScreen = "[object Object]";
+homeScreen = "[object Object]";
+profileScreen = "[object Object]";
+validation = "[object Object]";
+firebaseErrors = "[object Object]";
+resetPasswordScreen = "[object Object]";
+chatScreen = "[object Object]";
