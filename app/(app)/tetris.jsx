@@ -1,149 +1,192 @@
-// // IMPORTLAR
-// import { useState, useEffect } from 'react';
-// import { View, Text, TouchableOpacity } from 'react-native';
-// import { useRouter } from "expo-router";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-// import { createStage, checkCollision } from '@/helpers/gameHelpers';
-// import { StyledTetrisWrapper, StyledTetris } from '@/components/tetris/styles/StyledTetris';
+// Helpers
+import { createStage } from '@/helpers/gameHelpers';
 
-// // Custom Hooks
-// import { useInterval } from '@/hooks/useInterval';
-// import { usePlayer } from '@/hooks/usePlayer';
-// import { useStage } from '@/hooks/useStage';
-// import { useGameStatus } from '@/hooks/useGameStatus';
-// import { usePlayerStats } from "@/hooks/usePlayerStats";
-// import { useSaveScore } from "@/hooks/useSaveScore";
-// import { useLogout } from "@/hooks/useLogout";
-// import { useGameControl } from "@/hooks/useGameControl";
-// import { useGameMovement } from "@/hooks/useGameMovement";
-// import { useAutoSaveScore } from "@/hooks/useAutoSaveScore";
+// Custom Hooks
+import { useInterval } from '@/hooks/useInterval';
+import { usePlayer } from '@/hooks/usePlayer';
+import { useStage } from '@/hooks/useStage';
+import { useGameStatus } from '@/hooks/useGameStatus';
+import { usePlayerStats } from '@/hooks/usePlayerStats';
+import { useGameControl } from '@/hooks/useGameControl';
+import { useGameMovement } from '@/hooks/useGameMovement';
 
-// // Components
-// import Stage from '@/components/tetris/Stage';
-// import Display from '@/components/tetris/Display';
-// import StartButton from '@/components/tetris/StartButton';
-// import SpeedSlider from '@/components/tetris/SpeedSlider';
-// import NextPiece from "@/components/tetris/NextPiece";
-// import PauseButton from '@/components/tetris/PauseButton';
-// import { StyledStartButton } from '@/components/tetris/styles/StyledStartButton';
-// import { StyledPauseButton } from '@/components/tetris/styles/StyledPauseButton';
+// Components
+import Stage from '@/components/tetris/Stage';
+import Display from '@/components/tetris/Display';
+import StartButton from '@/components/tetris/StartButton';
+import SpeedSlider from '@/components/tetris/SpeedSlider';
+import NextPiece from '@/components/tetris/NextPiece';
+import PauseButton from '@/components/tetris/PauseButton';
 
-// Yanlış / Çözülemeyen:
-// import { createStage } from '@/helpers/gameHelpers';
-// import Stage from '@/components/tetris/Stage';
-
-// Doğru (Relative Path):
-import { createStage, checkCollision } from '../../helpers/gameHelpers';
-import { StyledTetrisWrapper, StyledTetris } from '../../components/tetris/styles/StyledTetris';
-import Stage from '../../components/tetris/Stage';
-import Display from '../../components/tetris/Display';
-import StartButton from '../../components/tetris/StartButton';
-import SpeedSlider from '../../components/tetris/SpeedSlider';
-import NextPiece from '../../components/tetris/NextPiece';
-import PauseButton from '../../components/tetris/PauseButton';
-import { StyledStartButton } from '../../components/tetris/styles/StyledStartButton';
-import { StyledPauseButton } from '../../components/tetris/styles/StyledPauseButton';
-
-import { useInterval } from '../../hooks/useInterval';
-import { usePlayer } from '../../hooks/usePlayer';
-import { useStage } from '../../hooks/useStage';
-import { useGameStatus } from '../../hooks/useGameStatus';
-import { usePlayerStats } from '../../hooks/usePlayerStats';
-import { useSaveScore } from '../../hooks/useSaveScore';
-import { useLogout } from '../../hooks/useLogout';
-import { useGameControl } from '../../hooks/useGameControl';
-import { useGameMovement } from '../../hooks/useGameMovement';
-import { useAutoSaveScore } from '../../hooks/useAutoSaveScore';
-
-/**
- * oyun iki şey sayesinde ilerliyor: keyborad eventleri(tuşlar) ve setInterval(timer) fonksiyonu. 
- */
 const Tetris = () => {
-  /**
-   * başlangıç statelerini react componente ait dahili memory alanlarında tuttar
-   */
-  
-  
-
-  const {saveScore} = useSaveScore(); //{} obje
-
-  const {logout} = useLogout(); //{} obje
-
   // Custom Hooks
-  const [player, updatePlayerPos, resetPlayer, playerRotate, nextTetromino] = usePlayer(); 
-  /**
-   * player : playerın pozisyonu ve şekli
-   * updatePlayerPos : playerın pozisyonunu güncellemek için
-   * resetPlayer : playerı resetlemek için (yeni block oluşturmak için)
-   * playerRotate : playerı döndürmek için
-   */
-
-  const [stage, setStage, rowsCleared] = useStage(player, resetPlayer); // useStage ile oyuncunun yere çarpıp çarpadığını kontrol ediyoruz.
-
-  const [score, setScore, rows, setRows] = useGameStatus(rowsCleared); // score - level - rows //level removed
-
-  const [highScore, totalRows, setHighScore, setTotalRows ] = usePlayerStats(score, rowsCleared)
+  const [player, updatePlayerPos, resetPlayer, playerRotate, nextTetromino] = usePlayer();
+  const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
+  const [score, setScore, rows, setRows] = useGameStatus(rowsCleared);
+  const [highScore, totalRows] = usePlayerStats(score, rowsCleared);
 
   const [speed, setSpeed] = useState(1000);
 
-  const { dropTime, setDropTime, gameOver, setGameOver, gameStarted, isPaused, togglePause, startGame } = useGameControl(speed, setStage, resetPlayer, setScore, setRows, createStage );
+  const {
+    dropTime,
+    setDropTime,
+    gameOver,
+    setGameOver,
+    gameStarted,
+    isPaused,
+    togglePause,
+    startGame,
+  } = useGameControl(speed, setStage, resetPlayer, setScore, setRows, createStage);
 
-  const { move, drop, keyUp } = useGameMovement(player, stage, updatePlayerPos, playerRotate, setGameOver, setDropTime, gameOver, speed);
+  const { move, drop } = useGameMovement(
+    player,
+    stage,
+    updatePlayerPos,
+    playerRotate,
+    setGameOver,
+    setDropTime,
+    gameOver,
+    speed
+  );
 
-  const navigate = useRouter();
-  
-
-  // This one starts the game
-  // Custom hook by Dan Abramov
+  // Oyun ana döngüsü
   useInterval(() => {
     drop();
   }, dropTime);
 
-
-useAutoSaveScore(gameOver, saveScore); //oyun bitince dbde skor güncellenmesi
-  
   return (
-    <StyledTetrisWrapper
-      role="button"
-      tabIndex="0"
-      onKeyDown={e => move(e)} // tuşa basınca e bize tuşun keyCode'unu veriyor. move fonksiyonu ile tuşa basıldığında ne olacağını belirliyoruz.
-      onKeyUp={keyUp} //user tuşu bırakınca bir daha intervale bırakıyoruz.
-    >
-      <StyledTetris>
+    <ScrollView contentContainerStyle={styles.scrollContainer} style={styles.container}>
+      <View style={styles.gameArea}>
+        {/* Oyun Tahtası */}
         <Stage stage={stage} />
-        <View>
+
+        {/* Bilgi & Kontrol Paneli */}
+        <View style={styles.sidePanel}>
           {gameOver ? (
             <>
-            <Display gameOver={gameOver} text="Game Over" />
-            <Display text={`Score: ${score}`} />
-            <StyledStartButton onClick={() => navigate("/leaderboard")}>
-                <Text>Leaderboard</Text>
-            </StyledStartButton>
+              <Display gameOver={gameOver} text="Game Over" />
+              <Display text={`Score: ${score}`} />
             </>
           ) : (
-            <View>
-              <Display text={`High Score: ${highScore}`} /> {/*highest score in db */}
-              <Display text={`Total Rows: ${totalRows}`} />
-
+            <>
+              <Display text={`High: ${highScore}`} />
               <Display text={`Score: ${score}`} />
-  
-              <Text>Next Piece</Text>
+              <Display text={`Lines: ${totalRows}`} />
+
+              <Text style={styles.sectionLabel}>Next Piece</Text>
               <NextPiece tetromino={nextTetromino} />
-              {/* <Display text={`Level: ${level}`} /> */}
-              <SpeedSlider speed={speed} onSpeedChange={setSpeed}/>
-              {gameStarted ? 
-              (<PauseButton callback={togglePause} isPaused={isPaused} />):(<></>)}
-            </View>
+
+              <SpeedSlider speed={speed} onSpeedChange={setSpeed} />
+
+              {gameStarted ? (
+                <PauseButton callback={togglePause} isPaused={isPaused} />
+              ) : null}
+            </>
           )}
-          <StartButton callback={startGame} text={gameStarted ? "RESET GAME" : "START GAME"} />
 
-          {/* <StyledPauseButton onClick={()=> logout(gameStarted, gameOver)}>
-            Logout
-          </StyledPauseButton> */}
-
+          <StartButton
+            callback={startGame}
+            text={gameStarted ? 'RESET GAME' : 'START GAME'}
+          />
         </View>
-      </StyledTetris>
-    </StyledTetrisWrapper>
+      </View>
+
+      {/* Dokunmatik Yön Butonları */}
+      {gameStarted && !gameOver ? (
+        <View style={styles.controlsContainer}>
+          <TouchableOpacity
+            style={styles.controlBtn}
+            onPress={() => move({ keyCode: 37 })}
+          >
+            <Text style={styles.controlBtnText}>◀</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.controlBtn, styles.rotateBtn]}
+            onPress={() => playerRotate(stage, 1)}
+          >
+            <Text style={styles.controlBtnText}>↻</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.controlBtn}
+            onPress={() => move({ keyCode: 39 })}
+          >
+            <Text style={styles.controlBtnText}>▶</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.controlBtn, styles.dropBtn]}
+            onPress={() => drop()}
+          >
+            <Text style={styles.controlBtnText}>▼</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
+    </ScrollView>
   );
 };
+
 export default Tetris;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0a0a0c',
+  },
+  scrollContainer: {
+    padding: 16,
+    alignItems: 'center',
+    paddingBottom: 40,
+  },
+  gameArea: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    width: '100%',
+    gap: 12,
+  },
+  sidePanel: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  sectionLabel: {
+    color: '#ffffff',
+    fontFamily: 'monospace',
+    fontSize: 14,
+    marginBottom: 6,
+  },
+  controlsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 16,
+    marginTop: 24,
+    width: '100%',
+  },
+  controlBtn: {
+    width: 60,
+    height: 60,
+    backgroundColor: '#222222',
+    borderWidth: 2,
+    borderColor: '#444444',
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  rotateBtn: {
+    borderColor: '#cc6c8c',
+    backgroundColor: '#331a24',
+  },
+  dropBtn: {
+    borderColor: '#6ccc9c',
+  },
+  controlBtnText: {
+    color: '#ffffff',
+    fontSize: 22,
+    fontWeight: 'bold',
+  },
+});

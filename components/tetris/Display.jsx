@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 
 
 const Display = ({ gameOver, text }) => (
-  <View style={styles.container} $gameOver={gameOver}>
-    <Text style={styles.text}>
+  <View style={styles.container}>
+    <Text style={[styles.text, { color: gameOver ? '#ff0000' : '#999999' }]}>
       {text}
     </Text>
   </View>
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   container: {
     // display: 'flex' ve boxSizing: 'border-box' React Native'de varsayılandır, yazmaya gerek yoktur.
     alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 20, // margin: 0 0 20px 0 karşılığı
     padding: 20,
     borderWidth: 4,

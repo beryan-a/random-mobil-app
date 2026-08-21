@@ -1,33 +1,30 @@
 import React from 'react';
 import { View, StyleSheet, useWindowDimensions } from 'react-native';
+import Cell from '@/components/tetris/Cell';
 
-export default function Stage({ width, height, stage }) {
+export default function Stage({ stage }) {
   const { width: screenWidth } = useWindowDimensions();
 
-  // CSS'teki max-width: 25vw mantığı: Ekran genişliğinin %25'i
-  const stageWidth = screenWidth * 0.25; 
-  // Her bir hücrenin kare (1:1) genişlik/yükseklik değeri
-  const cellSize = Math.floor(stageWidth / width);
+  // stage matrisinin genişlik ve yüksekliği
+  const stageWidthCount = stage[0]?.length || 12;
+
+  // Mobilde ekranın yaklaşık %65'ini tahtaya ayırıyoruz
+  const boardWidth = Math.min(screenWidth * 0.65, 320);
+  const cellSize = Math.floor(boardWidth / stageWidthCount);
 
   return (
-    <View style={[styles.container, { width: cellSize * width }]}>
-      {/* 
-        stage matrisiniz (row x col) varsa hücreleri render ederken 
-        her Cell bileşenine cellSize değerini verebilirsiniz:
-      */}
+    <View style={[styles.container, { width: cellSize * stageWidthCount }]}>
       {stage.map((row, y) =>
         row.map((cell, x) => (
           <View
             key={`${y}-${x}`}
-            style={[
-              styles.cell,
-              {
-                width: cellSize,
-                height: cellSize,
-                backgroundColor: cell[0] === 0 ? '#000' : 'cyan', // örnek hücre rengi
-              },
-            ]}
-          />
+            style={{
+              width: cellSize,
+              height: cellSize,
+            }}
+          >
+            <Cell type={cell[0]} />
+          </View>
         ))
       )}
     </View>
@@ -38,13 +35,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: '#111',
+    backgroundColor: '#111111',
     borderWidth: 2,
-    borderColor: '#333',
-    // gap: 1, // Eğer hücreler arasına 1px boşluk isterseniz ekleyebilirsiniz
-  },
-  cell: {
-    borderWidth: 1,
-    borderColor: '#222',
+    borderColor: '#333333',
+    alignSelf: 'center',
   },
 });

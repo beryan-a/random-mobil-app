@@ -6,7 +6,7 @@ import i18n from '@/services/i18n';
 import { colorScheme } from "nativewind";
 
 type QuickActionButton = {
-  icon: "person-outline" | "chatbubble-ellipses-outline" | "crossword";
+  icon: "person-outline" | "chatbubble-ellipses-outline" | "game-controller-outline";
   label: string;
   onPress: () => void;
 };
@@ -26,9 +26,9 @@ export const QuickActions = () => {
       onPress: () => router.push("/(app)/chat"),
     },
     {
-      icon: "crossword",
-      label: "tetris",
-      onPress: () => router.push("/(app)/tetris"),
+      icon: "game-controller-outline",
+      label: "Tetris",
+      onPress: () => router.push("/(app)/Tetris"),
     },
   ];
 

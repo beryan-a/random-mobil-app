@@ -49,6 +49,13 @@ export default function AppLayout() {
           title: i18n.t("profileScreen.title"),
         }}
       />
+      <Stack.Screen
+        name="Tetris"
+        options={{
+          title: "Tetris",
+          headerShown: true,
+        }}
+      />
     </Stack>
   );
 }

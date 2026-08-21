@@ -17,5 +17,5 @@
     "expo-env.d.ts",
     "nativewind-env.d.ts",
     "components/home/AdsSection.jsx"
-, "app/(app)/tetris.jsx"  ]
+, "app/(app)/Tetris.jsx"  ]
 }

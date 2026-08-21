@@ -1,16 +1,21 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import Slider from '@react-native-community/slider';
 
 function SpeedSlider({ speed, onSpeedChange }) {
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>Speed: {speed} ms</Text>
-
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric" // Sayısal klavye açar
-        value={String(speed)} // TextInput sadece string kabul eder
-        onChangeText={(text) => onSpeedChange(Number(text) || 0)} // Metni sayıya çevirir
+      <Slider
+        style={styles.slider}
+        minimumValue={50}
+        maximumValue={1500}
+        step={50}
+        value={speed}
+        onValueChange={onSpeedChange}
+        minimumTrackTintColor="#cc6c8c"
+        maximumTrackTintColor="#555555"
+        thumbTintColor="#cc6c8c"
       />
     </View>
   );
@@ -24,17 +29,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   paragraph: {
-    color: '#000000',
+    color: '#ffffff',
     fontFamily: 'monospace',
-    marginBottom: 10,
+    marginBottom: 8,
   },
-  input: {
+  slider: {
     width: '100%',
-    color: '#000000',
-    fontFamily: 'monospace',
-    borderWidth: 1,
-    borderColor: '#cc6c8c',
-    padding: 8,
-    borderRadius: 6,
+    height: 40,
   },
 });
