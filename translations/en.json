@@ -176,5 +176,18 @@
     "messagePlaceholder": "Type your message...",
     "sendButton": "Send",
     "errorMessage": "Sorry, I couldn't process your request. Please try again."
+  },
+  "gameScreen": {
+    "title": "Tetris",
+    "lines": "Rows: %{count}",
+    "score": "Score: %{count}",
+    "highScore": "Highest Score: %{count}",
+    "gameOver": "Game Over",
+    "NextPiece": "Next Piece",
+    "Speed": "Speed",
+    "Pause": "Pause",
+    "Reset": "Play",
+    "StartGame": "Start Game",
+    "Restart": "Restart"
   }
 }

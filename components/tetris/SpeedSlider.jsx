@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
+import i18n from '@/services/i18n';
 
 function SpeedSlider({ speed, onSpeedChange }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.paragraph}>Speed: {speed} ms</Text>
+      <Text style={styles.paragraph}>{i18n.t("gameScreen.Speed")}: {speed} ms</Text>
       <Slider
         style={styles.slider}
         minimumValue={50}

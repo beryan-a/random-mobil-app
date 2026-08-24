@@ -1,82 +1,48 @@
-// import { transform } from "lodash";
-// import React from "react";
-// import { Pressable, Text, StyleSheet} from "react-native";
-
-// function StartButton({ callback , text = 'START GAME'}) {
-//   return (
-//     <Pressable onPress={callback} 
-//         style={({ pressed }) => [
-//         styles.button,
-//         pressed && styles.buttonPressed // Tıklama efekti (opaklık)
-//       ]}> {/*tuşa basılınca start game çalışacak*/}
-//         <Text style={styles.text}>{text}</Text>
-//     </Pressable>
-//   );
-// }
-
-// export default StartButton;
-
-// const styles = StyleSheet.create({
-//   button: {
-//     marginBottom: 20,
-//     padding: 16,
-//     minHeight: 48,
-//     width: '100%',
-//     borderRadius: 20,
-//     backgroundColor: '#cc6c8c',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   buttonPressed: {
-//     opacity: 0.8,
-//     transform: [{scale: 0.98}],
-//   },
-//   text: {
-//     color: '#ffffff',
-//     fontFamily: 'monospace',
-//     fontSize: 16,
-//     fontWeight: 'bold',
-//   },
-// })
-
 import React from 'react';
-import { Pressable, Text, StyleSheet } from 'react-native';
+import { Pressable, Text, StyleSheet,TouchableOpacity } from 'react-native';
+import i18n from '@/services/i18n/index';
 
-function StartButton({ callback, text = 'Start Game' }) {
+function StartButton({ callback, text = i18n.t("gameScreen.StartGame") }) {
   return (
-    <Pressable
+    <TouchableOpacity
+
+
       onPress={callback}
       style={({ pressed }) => [
         styles.button,
         pressed && styles.buttonPressed,
       ]}
     >
-      <Text style={styles.text}>{text}</Text>
-    </Pressable>
+      <Text style={styles.text}>
+        {text}
+      </Text>
+    </TouchableOpacity>
   );
 }
 
-export default StartButton;
-
 const styles = StyleSheet.create({
   button: {
-    marginBottom: 20,
-    padding: 16,
-    minHeight: 48,
-    width: '100%',
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    backgroundColor: '#333333',
     borderRadius: 20,
-    backgroundColor: '#cc6c8c',
+    borderWidth: 2,
+    borderColor: '#cc6c8c',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 20,
+    width: '100%',
   },
   buttonPressed: {
     opacity: 0.8,
-    transform: [{ scale: 0.98 }],
+    backgroundColor: '#cc6c8c',
   },
   text: {
     color: '#ffffff',
     fontFamily: 'monospace',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
   },
 });
+
+export default StartButton;

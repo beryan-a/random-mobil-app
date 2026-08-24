@@ -1,5 +1,6 @@
 export const SUPPORTED_LANGUAGES = [
   { code: "en", name: "English", flag: "🇺🇸" },
+  { code: "tr", name: "Türkçe", flag: "🇹🇷" },
   { code: "ar", name: "العربية", flag: "🇸🇦" },
   { code: "zh", name: "中文", flag: "🇨🇳" },
   { code: "fr", name: "Français", flag: "🇫🇷" },
@@ -10,7 +11,6 @@ export const SUPPORTED_LANGUAGES = [
   { code: "ko", name: "한국어", flag: "🇰🇷" },
   { code: "ru", name: "Русский", flag: "🇷🇺" },
   { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "tr", name: "Türkçe", flag: "🇹🇷" },
 ];
 
 export const AUTH_PROVIDERS = {

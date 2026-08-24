@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import i18n from '@/services/i18n';
 
 const PauseButton = ({ callback, isPaused }) => {
   return (
@@ -8,7 +9,7 @@ const PauseButton = ({ callback, isPaused }) => {
       onPress={callback}
       activeOpacity={0.7}
     >
-      <Text style={styles.text}>{isPaused ? 'Resume' : 'Pause'}</Text>
+      <Text style={styles.text}>{isPaused ?  i18n.t("gameScreen.Reset") : i18n.t("gameScreen.Pause") }</Text>
     </TouchableOpacity>
   );
 };
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#ffffff',
-    fontSize: 16,
+    fontSize: 12,
     fontFamily: 'monospace',
     fontWeight: 'bold',
   },

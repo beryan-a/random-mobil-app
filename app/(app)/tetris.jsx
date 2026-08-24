@@ -21,6 +21,10 @@ import SpeedSlider from '@/components/tetris/SpeedSlider';
 import NextPiece from '@/components/tetris/NextPiece';
 import PauseButton from '@/components/tetris/PauseButton';
 
+//language support 
+import i18n from "@/services/i18n";
+
+
 const Tetris = () => {
   // Custom Hooks
   const [player, updatePlayerPos, resetPlayer, playerRotate, nextTetromino] = usePlayer();
@@ -67,16 +71,19 @@ const Tetris = () => {
         <View style={styles.sidePanel}>
           {gameOver ? (
             <>
-              <Display gameOver={gameOver} text="Game Over" />
-              <Display text={`Score: ${score}`} />
+              <Display gameOver={gameOver} textKey="gameScreen.gameOver" />
+
+              <Display textKey="gameScreen.score" params={{ count: score }} />
             </>
           ) : (
             <>
-              <Display text={`High: ${highScore}`} />
-              <Display text={`Score: ${score}`} />
-              <Display text={`Lines: ${totalRows}`} />
+              <Display textKey="gameScreen.highScore" params={{ count: highScore }} />
 
-              <Text style={styles.sectionLabel}>Next Piece</Text>
+              <Display textKey="gameScreen.score" params={{ count: score }} />
+
+              <Display textKey="gameScreen.lines" params={{ count: totalRows }} />
+
+              <Text style={styles.sectionLabel}>{i18n.t("gameScreen.NextPiece")}</Text>
               <NextPiece tetromino={nextTetromino} />
 
               <SpeedSlider speed={speed} onSpeedChange={setSpeed} />
@@ -86,10 +93,13 @@ const Tetris = () => {
               ) : null}
             </>
           )}
-
+          
+          {/* RESET GAME : START GAME */}
           <StartButton
             callback={startGame}
-            text={gameStarted ? 'RESET GAME' : 'START GAME'}
+            text={gameStarted ? 
+              i18n.t("gameScreen.Restart") : 
+              i18n.t("gameScreen.StartGame")}
           />
         </View>
       </View>

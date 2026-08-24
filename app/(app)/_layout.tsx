@@ -52,7 +52,7 @@ export default function AppLayout() {
       <Stack.Screen
         name="Tetris"
         options={{
-          title: "Tetris",
+          title: i18n.t("gameScreen.title"),
           headerShown: true,
         }}
       />

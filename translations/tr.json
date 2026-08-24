@@ -164,5 +164,18 @@
     "sendingButton": "Gönderiliyor...",
     "backToLogin": "Girişe Dön",
     "resetEmailSent": "Şifre sıfırlama e-postası gönderildi"
+  },
+  "gameScreen": {
+    "title": "Tetris",
+    "lines": "Satırlar: %{count}",
+    "score": "Skor: %{count}",
+    "highScore": "Rekor: %{count}",
+    "gameOver": "Bitti Bittiiii",
+    "NextPiece": "Sonraki parça",
+    "Speed": "Hız",
+    "Pause": "Duraklat",
+    "Reset": "Oynat",
+    "StartGame": "Başlat",
+    "Restart": "Yeniden Başlat"
   }
 }

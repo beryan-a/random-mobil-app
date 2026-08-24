@@ -43,7 +43,7 @@ export const getDeviceLanguage = (): string => {
 };
 
 /**
- * Check if the language is RTL
+ * Check if the language is RTL (right to left(arpca,ibranice,farsca,urduca))
  */
 export const isRTL = (lang: string): boolean => {
   return lang === "ar" || getLocales()[0].textDirection === "rtl";
