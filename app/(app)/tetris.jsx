@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { GestureHandlerRootView, PanGestureHandler, TapGestureHandler, LongPressGestureHandler, State } from 'react-native-gesture-handler';
 
 // Helpers
 import { createStage } from '@/helpers/gameHelpers';
@@ -56,93 +57,105 @@ const Tetris = () => {
     speed
   );
 
+  const handlePan = ({ nativeEvent}) => {
+    if (nativeEvent.state !== State.END) return;
+
+    const dx = nativeEvent.translationX;
+    if (Math.abs(dx) < 20) return;
+
+    move({ keyCode: dx > 0 ? 39 : 37 });
+  };
+
+  const handleTap = ({ nativeEvent}) => {
+    if (nativeEvent.state === State.END) {
+      playerRotate(stage, 1);
+    }
+  };
+
+  const handleLongPress = ({nativeEvent }) => {
+    if (nativeEvent.state === State.ACTIVE) {
+      setDropTime(60);
+      return;
+    }
+
+    if (nativeEvent.state === State.END||nativeEvent.state === State.CANCELLED||nativeEvent.state === State.FAILED) {
+      setDropTime(speed);
+    }
+    
+  };
+
   // Oyun ana döngüsü
   useInterval(() => {
     drop();
   }, dropTime);
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer} style={styles.container}>
-      <View style={styles.gameArea}>
-        {/* Oyun Tahtası */}
-        <Stage stage={stage} />
+    <GestureHandlerRootView style={styles.gestureRoot}>
+      <ScrollView contentContainerStyle={styles.scrollContainer} style={styles.container}>
+        <View style={styles.gameArea}>
+          {/* Oyun Tahtası */}
+          <PanGestureHandler onHandlerStateChange={handlePan}>
+            <TapGestureHandler onHandlerStateChange={handleTap} shouldCancelWhenOutside={false}>
+              <LongPressGestureHandler
+                onHandlerStateChange={handleLongPress}
+                minDurationMs={220}
+                shouldCancelWhenOutside={false}
+              >
+                <View style={styles.stageGestureWrapper}>
+                  <Stage stage={stage} />
+                </View>
+              </LongPressGestureHandler>
+            </TapGestureHandler>
+          </PanGestureHandler>
 
-        {/* Bilgi & Kontrol Paneli */}
-        <View style={styles.sidePanel}>
-          {gameOver ? (
-            <>
-              <Display gameOver={gameOver} textKey="gameScreen.gameOver" />
+          {/* Bilgi & Kontrol Paneli */}
+          <View style={styles.sidePanel}>
+            {gameOver ? (
+              <>
+                <Display gameOver={gameOver} textKey="gameScreen.gameOver" />
 
-              <Display textKey="gameScreen.score" params={{ count: score }} />
-            </>
-          ) : (
-            <>
-              <Display textKey="gameScreen.highScore" params={{ count: highScore }} />
+                <Display textKey="gameScreen.score" params={{ count: score }} />
+              </>
+            ) : (
+              <>
+                <Display textKey="gameScreen.highScore" params={{ count: highScore }} />
 
-              <Display textKey="gameScreen.score" params={{ count: score }} />
+                <Display textKey="gameScreen.score" params={{ count: score }} />
 
-              <Display textKey="gameScreen.lines" params={{ count: totalRows }} />
+                <Display textKey="gameScreen.lines" params={{ count: totalRows }} />
 
-              <Text style={styles.sectionLabel}>{i18n.t("gameScreen.NextPiece")}</Text>
-              <NextPiece tetromino={nextTetromino} />
+                <Text style={styles.sectionLabel}>{i18n.t("gameScreen.NextPiece")}</Text>
+                <NextPiece tetromino={nextTetromino} />
 
-              <SpeedSlider speed={speed} onSpeedChange={setSpeed} />
+                <SpeedSlider speed={speed} onSpeedChange={setSpeed} />
 
-              {gameStarted ? (
-                <PauseButton callback={togglePause} isPaused={isPaused} />
-              ) : null}
-            </>
-          )}
-          
-          {/* RESET GAME : START GAME */}
-          <StartButton
-            callback={startGame}
-            text={gameStarted ? 
-              i18n.t("gameScreen.Restart") : 
-              i18n.t("gameScreen.StartGame")}
-          />
+                {gameStarted ? (
+                  <PauseButton callback={togglePause} isPaused={isPaused} />
+                ) : null}
+              </>
+            )}
+
+            {/* RESET GAME : START GAME */}
+            <StartButton
+              callback={startGame}
+              text={gameStarted ?
+                i18n.t("gameScreen.Restart") :
+                i18n.t("gameScreen.StartGame")}
+            />
+          </View>
         </View>
-      </View>
 
-      {/* Dokunmatik Yön Butonları */}
-      {gameStarted && !gameOver ? (
-        <View style={styles.controlsContainer}>
-          <TouchableOpacity
-            style={styles.controlBtn}
-            onPress={() => move({ keyCode: 37 })}
-          >
-            <Text style={styles.controlBtnText}>◀</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.controlBtn, styles.rotateBtn]}
-            onPress={() => playerRotate(stage, 1)}
-          >
-            <Text style={styles.controlBtnText}>↻</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.controlBtn}
-            onPress={() => move({ keyCode: 39 })}
-          >
-            <Text style={styles.controlBtnText}>▶</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.controlBtn, styles.dropBtn]}
-            onPress={() => drop()}
-          >
-            <Text style={styles.controlBtnText}>▼</Text>
-          </TouchableOpacity>
-        </View>
-      ) : null}
-    </ScrollView>
+      </ScrollView>
+    </GestureHandlerRootView>
   );
 };
 
 export default Tetris;
 
 const styles = StyleSheet.create({
+  gestureRoot: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: '#0a0a0c',
@@ -169,34 +182,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 6,
   },
-  controlsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 16,
-    marginTop: 24,
-    width: '100%',
-  },
-  controlBtn: {
-    width: 60,
-    height: 60,
-    backgroundColor: '#222222',
-    borderWidth: 2,
-    borderColor: '#444444',
-    borderRadius: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  rotateBtn: {
-    borderColor: '#cc6c8c',
-    backgroundColor: '#331a24',
-  },
-  dropBtn: {
-    borderColor: '#6ccc9c',
-  },
-  controlBtnText: {
-    color: '#ffffff',
-    fontSize: 22,
-    fontWeight: 'bold',
+  stageGestureWrapper: {
+    alignSelf: 'center',
   },
 });
