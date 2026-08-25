@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text, StyleSheet,TouchableOpacity } from 'react-native';
+import {Text, StyleSheet,TouchableOpacity } from 'react-native';
 import i18n from '@/services/i18n/index';
 
 function StartButton({ callback, text = i18n.t("gameScreen.StartGame") }) {
