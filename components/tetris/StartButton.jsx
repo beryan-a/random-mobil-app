@@ -5,13 +5,10 @@ import i18n from '@/services/i18n/index';
 function StartButton({ callback, text = i18n.t("gameScreen.StartGame") }) {
   return (
     <TouchableOpacity
-
-
       onPress={callback}
-      style={({ pressed }) => [
-        styles.button,
-        pressed && styles.buttonPressed,
-      ]}
+      style={
+        styles.button
+      }
     >
       <Text style={styles.text}>
         {text}
@@ -34,13 +31,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   buttonPressed: {
-    opacity: 0.8,
     backgroundColor: '#cc6c8c',
   },
   text: {
     color: '#ffffff',
     fontFamily: 'monospace',
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: 'bold',
   },
 });
