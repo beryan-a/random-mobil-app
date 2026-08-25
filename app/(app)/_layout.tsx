@@ -56,6 +56,13 @@ export default function AppLayout() {
           headerShown: true,
         }}
       />
+      <Stack.Screen
+        name="Weather"
+        options={{
+          title: i18n.t("gameScreen.title"),
+          headerShown: true,
+        }}
+      />
     </Stack>
   );
 }

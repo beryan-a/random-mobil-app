@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import auth from "@react-native-firebase/auth";
 import i18n from '@/services/i18n';
 import { QuickActions } from "@/components/home/QuickActions";
@@ -22,6 +22,7 @@ export default function Home() {
           <Text className="text-lg font-medium text-gray-600 mb-6 dark:text-white">
             {i18n.t("homeScreen.subtitle")}
           </Text>
+
           <QuickActions />
           <AdsSection />
           <PremiumSection />
@@ -31,3 +32,26 @@ export default function Home() {
     </SafeAreaView>
   );
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    height: 60,
+    justifyContent: 'center',
+  },
+  scrollContainer: {
+    paddingHorizontal: 15,
+    alignItems: 'center',
+  },
+  optionButton: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 20,
+    marginRight: 10,
+  },
+  optionText: {
+    fontSize: 14,
+    color: '#333',
+  },
+});
