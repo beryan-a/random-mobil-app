@@ -77,12 +77,12 @@ export const usePlayer = () => {
 
     const updatePlayerPos = ({ x, y, collided }) => { // Destructuring: bir objnin içindeki değerleri değişkenlere atama. (eski object aynen kalır)
         setPlayer(prev => ({ //prev: önceki playerın durumunu alırız ve ye
-        ...prev, // butun alanları kopyalar.
+        ...prev, // butun alanları kopyalar. ama sadecec aşiağıda belirtilen değişiklikler yapılır diğer variablelar aynı kalacak
         pos: {
             x: prev.pos.x + x,
             y: prev.pos.y + y,
         },
-        collided, // collided: collided, ile aynı. çünkü key ve value aynı isimde.(js te Eğer parametre adı ile object içindeki anahtar aynıysa kısa yazabilirm.)
+        collided, // collided: collided, ile aynı. çünkü key ve value aynı isimde.(js te Eğer parametre adı ile object içindeki anahtar aynıysa kısa yazabilirim.)
         }));
     };
 
@@ -92,9 +92,9 @@ export const usePlayer = () => {
 
         //useCallback: Bu fonksiyonu tekrar tekrar oluşturmamak için.
         setPlayer({
-        pos: { x: STAGE_WIDTH / 2 - 2, y: 0 }, // -2 yi, centerda ortalansın diye ekledik.
-        tetromino: currentTetromino.shape,
-        collided: false,
+            pos: { x: STAGE_WIDTH / 2 - 2, y: 0 }, // -2 yi, centerda ortalansın diye ekledik.
+            tetromino: currentTetromino.shape,
+            collided: false,
         });
 
         setNextTetromino(randomTetromino()); //generate random next piece
