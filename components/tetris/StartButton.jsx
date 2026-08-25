@@ -6,9 +6,7 @@ function StartButton({ callback, text = i18n.t("gameScreen.StartGame") }) {
   return (
     <TouchableOpacity
       onPress={callback}
-      style={
-        styles.button
-      }
+      style={styles.button}
     >
       <Text style={styles.text}>
         {text}
