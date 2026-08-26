@@ -57,9 +57,9 @@ export default function AppLayout() {
         }}
       />
       <Stack.Screen
-        name="Weather"
+        name="Weather" //route name
         options={{
-          title: i18n.t("gameScreen.title"),
+          title: "Weather",
           headerShown: true,
         }}
       />

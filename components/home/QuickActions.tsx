@@ -42,8 +42,10 @@ export const QuickActions = () => {
       <Text className="text-xl font-semibold text-gray-800 mb-4 dark:text-white">
         {i18n.t("homeScreen.quickActions")}
       </Text>
-      Sc
-        <View style={{ gap: 16 }} className="flex-row justify-between">
+
+      <ScrollView alwaysBounceHorizontal={true}>
+
+        <View style={{ gap: 30 }} className="flex-row justify-between">
           {quickActions.map((button, index) => (
             <TouchableOpacity
               key={index}
@@ -52,7 +54,7 @@ export const QuickActions = () => {
             >
               <Ionicons
                 name={button.icon}
-                size={24}
+                size={30}
                 color={isDark ? "#9CA3AF" : "#4B5563"}
               />
               <Text className="mt-2 text-sm text-gray-600 text-center dark:text-white font-regular">
@@ -61,6 +63,9 @@ export const QuickActions = () => {
             </TouchableOpacity>
           ))}
         </View>
+
+      </ScrollView>
+        
     </>
   );
 };

@@ -13,23 +13,24 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.salika.RNStarterKitExpo", // TODO: change with your bundle id
-      "associatedDomains": ["applinks:codebasehub.onelink.me"], // TODO: change with your onelink host from AppsFlyer
-      "googleServicesFile": "./GoogleService-Info.plist", // TODO: find from GoogleService-Info.plist
+      "bundleIdentifier": "com.salika.RNStarterKitExpo",
+      "associatedDomains": ["applinks:codebasehub.onelink.me"],
+      "googleServicesFile": "./GoogleService-Info.plist",
       "usesAppleSignIn": true,
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true,
         "ExpoLocalization_supportsRTL": true,
+        "NSLocationWhenInUseUsageDescription": "Hava durumu bilgilerini bulunduğunuz konuma göre göstermek için konum izni gereklidir.",
         "CFBundleURLTypes": [
           {
             "CFBundleURLSchemes": [
-              "com.salika.RNStarterKitExpo", // TODO: change with your bundle id
-              "app-1-387444732055-ios-0385d3a2645185d380b9d2" // TODO: find from GoogleService-Info.plist
+              "com.salika.RNStarterKitExpo",
+              "app-1-387444732055-ios-0385d3a2645185d380b9d2"
             ]
           }
         ]
       },
-      "appleTeamId": "32C4JWR5TY" // TODO: change with your apple team id
+      "appleTeamId": "32C4JWR5TY"
     },
     "android": {
       "adaptiveIcon": {
@@ -38,13 +39,17 @@
       },
       "package": "com.salika.RNStarterKitExpo",
       "googleServicesFile": "./google-services.json",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
       "intentFilters": [
         {
           "action": "VIEW",
           "data": [
             {
               "scheme": "https",
-              "host": "codebasehub.onelink.me", // TODO: change with your onelink host from AppsFlyer
+              "host": "codebasehub.onelink.me",
               "pathPrefix": "/test1"
             }
           ],
@@ -71,14 +76,20 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png", // TODO: change with your splash icon
+          "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
           "dark": {
-            "image": "./assets/images/splash-icon-dark.png", // TODO: change with your splash icon for dark mode
+            "image": "./assets/images/splash-icon-dark.png",
             "backgroundColor": "#0F172A"
           }
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Location permission is required to display weather information based on your current location."
         }
       ],
       "@react-native-firebase/app",
@@ -106,8 +117,8 @@
       [
         "react-native-google-mobile-ads",
         {
-          "androidAppId": "ca-app-pub-6370298270367230~3154264064", // TODO: change with your Mobile Ads App ID
-          "iosAppId": "ca-app-pub-6370298270367230~7101789538", // TODO: change with your Mobile Ads App ID
+          "androidAppId": "ca-app-pub-6370298270367230~3154264064",
+          "iosAppId": "ca-app-pub-6370298270367230~7101789538",
           "skAdNetworkItems": [
             "cstr6suwn9.skadnetwork",
             "4fzdc2evr5.skadnetwork",
@@ -177,23 +188,23 @@
         "origin": false
       },
       "eas": {
-        "projectId": "1b515019-61bd-49d7-a7f7-3ed45db2c806" // TODO: change with your eas project id
+        "projectId": "1b515019-61bd-49d7-a7f7-3ed45db2c806"
       },
       "supportsRTL": true
     },
     "locales": {
-      "en": "./translations/en.json", // english
-      "ar": "./translations/ar.json", // arabic
-      "zh": "./translations/zh-Hans.json", // chinese
-      "fr": "./translations/fr.json", // french
-      "de": "./translations/de.json", // german
-      "hi": "./translations/hi.json", // hindi
-      "it": "./translations/it.json", //italian
-      "ja": "./translations/ja.json", // japanese
-      "ko": "./translations/ko.json", // korean
-      "ru": "./translations/ru.json", // russian
-      "es": "./translations/es.json", // spanish
-      "tr": "./translations/tr.json" // turkish
+      "en": "./translations/en.json",
+      "ar": "./translations/ar.json",
+      "zh": "./translations/zh-Hans.json",
+      "fr": "./translations/fr.json",
+      "de": "./translations/de.json",
+      "hi": "./translations/hi.json",
+      "it": "./translations/it.json",
+      "ja": "./translations/ja.json",
+      "ko": "./translations/ko.json",
+      "ru": "./translations/ru.json",
+      "es": "./translations/es.json",
+      "tr": "./translations/tr.json"
     }
   }
 }
